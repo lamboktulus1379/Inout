@@ -1,0 +1,15 @@
+FROM golang:1.18-alpine
+
+WORKDIR /app
+
+ENV GOOS=linux
+WORKDIR /src
+RUN cd /src
+COPY ["./Services/Inout/inout", "/app/"]
+
+WORKDIR /app
+RUN chmod +x ./inout
+
+EXPOSE 80
+
+CMD [ "./inout" ]
